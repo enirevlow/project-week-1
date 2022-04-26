@@ -56,6 +56,7 @@ allList.addEventListener('click', e => {
         } else {
             selectedListId = null;
             taskTitle.innerText = 'Tasks';
+            clearElements(allTask);
         }
         saveAndBuildLists();
     }
