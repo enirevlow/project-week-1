@@ -41,6 +41,7 @@ newListForm.addEventListener('submit', e => {
         const list = createList(listname);
         newListForm.reset();
         lists.push(list);
+        selectedListId = lists[lists.length-1].id;
         saveAndBuildLists();
     }
 })
@@ -48,10 +49,9 @@ newListForm.addEventListener('submit', e => {
 //delete list
 allList.addEventListener('click', e => {
     if(e.target.tagName.toLowerCase() === 'button'){
-        console.log(e.target.parentElement.dataset.listId);
         let toDeleteId = e.target.parentElement.dataset.listId;
         lists = lists.filter(list => list.id !== toDeleteId);
-        selectedListId = null;
+        selectedListId = lists[0].id;
         saveAndBuildLists();
     }
 })
