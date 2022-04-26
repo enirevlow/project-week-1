@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <script defer src="./src/js/main.js"></script>
+    <title>Multi List App</title>
+</head>
+<body>
+    <header>
+        <h1 class="title">Multi List App</h1>
+    </header>
+    <div class="list-container">
+        <h2 class="list-title">LISTS</h2>
+        <form action="" class="newlist" data-new-list-form>
+            <input type="text" name="" id="new-list-input" placeholder="Add New List" autocomplete="off" data-new-list-input>
+        </form>
+        <ul class="all-lists" data-all-lists></ul>
+    </div>
+    <div class="task-container">
+        <div class="task-header">
+            <h2 class="task-title">Tasks</h2>
+            <button class="clear-all-button">Clear All</button>
+        </div>
+        <ul class="all-tasks" data-all-tasks></ul>
+        <form action="" class="newtask" data-new-task-form>
+            <input type="text" name="" id="new-task-input" placeholder="Add New Task" autocomplete="off" data-new-task-input>
+            <button type="submit" id="new-task-button">Add</button>
+        </form>
+    </div>
+
+</body>
+</html>

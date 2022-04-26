@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap'); */
+
+:root {
+    --clr-primary: rgb(54, 112, 199);
+    --clr-light: #f4f4f4;
+    --clr-dark: #333;
+    --clr-warning: rgb(99, 36, 36);
+}
+
+*,
+*::before,
+*::after {
+    font-family: inherit;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    display: grid;
+    grid:
+    "header header header header" auto
+    "list task task task" auto /
+    1fr 1fr 1fr 1fr;
+}
+
+header {
+    grid-area: header;
+}
+
+.title {
+    padding: 20px;
+    border-bottom: 1px solid black;
+}
+
+.list-container {
+    grid-area: list;
+    padding: 20px;
+    border-right: 1px solid black;
+}
+
+.task-container {
+    grid-area: task;
+    padding: 20px;
+}
+
+.newlist {
+    display: block;
+}
+
+.selected-list {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+[type="checkbox"]:checked +li::after{
+    text-decoration: line-through;
+}
