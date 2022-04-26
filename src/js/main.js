@@ -51,10 +51,11 @@ allList.addEventListener('click', e => {
     if(e.target.tagName.toLowerCase() === 'button'){
         let toDeleteId = e.target.parentElement.dataset.listId;
         lists = lists.filter(list => list.id !== toDeleteId);
-        if (lists.length > 1) {
+        if (lists.length >= 1) {
         selectedListId = lists[0].id;
         } else {
             selectedListId = null;
+            taskTitle.innerText = 'Tasks';
         }
         saveAndBuildLists();
     }
