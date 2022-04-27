@@ -168,39 +168,30 @@ function buildTasks(selectedList) {
         taskDiv.id = task.id;
         taskDiv.classList.add('indv-taskcontainer');
         allTask.appendChild(taskDiv);
-        //create checkbox container
-        const checkboxDiv = document.createElement('div');
-        checkboxDiv.classList.add('checkbox-div');
-        taskDiv.appendChild(checkboxDiv);
+        //create task-left container
+        const taskLeftDiv = document.createElement('div');
+        taskLeftDiv.classList.add('taskleft-div');
+        taskDiv.appendChild(taskLeftDiv);
         //create checkbox
         const completeCheckBox = document.createElement('input');
         completeCheckBox.setAttribute('type', 'checkbox');
         completeCheckBox.checked = task.complete;
         completeCheckBox.name = 'complete-checkbox';
-        checkboxDiv.appendChild(completeCheckBox);
-        //create taskcontent container
-        const taskContentDiv = document.createElement('div');
-        taskContentDiv.classList.add('taskcontent-div');
-        taskDiv.appendChild(taskContentDiv);
-        if (completeCheckBox.checked) {
-            taskDiv.style.textDecoration = 'line-through';
-        } else {
-            taskDiv.style.textDecoration = 'none';
-        }
+        taskLeftDiv.appendChild(completeCheckBox);
         //create taskcontent
         const taskContent = document.createElement('li');
         taskContent.innerText = task.name;
-        taskContentDiv.appendChild(taskContent);
-        //create deletebutton container
-        const deleteButtonDiv = document.createElement('div');
-        deleteButtonDiv.classList.add('deletebutton-div');
-        taskDiv.appendChild(deleteButtonDiv);
+        taskLeftDiv.appendChild(taskContent);
+        //create task-right container
+        const taskRightDiv = document.createElement('div');
+        taskRightDiv.classList.add('taskright-div');
+        taskDiv.appendChild(taskRightDiv);
         //create deletebutton
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete-task');
         deleteButton.id = 'delete' + task.id;
         deleteButton.innerText = 'x';
-        deleteButtonDiv.appendChild(deleteButton);
+        taskRightDiv.appendChild(deleteButton);
     })
 }
 
