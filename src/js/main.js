@@ -182,6 +182,11 @@ function buildTasks(selectedList) {
         const taskContentDiv = document.createElement('div');
         taskContentDiv.classList.add('taskcontent-div');
         taskDiv.appendChild(taskContentDiv);
+        if (completeCheckBox.checked) {
+            taskDiv.style.textDecoration = 'line-through';
+        } else {
+            taskDiv.style.textDecoration = 'none';
+        }
         //create taskcontent
         const taskContent = document.createElement('li');
         taskContent.innerText = task.name;
