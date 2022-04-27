@@ -29,6 +29,10 @@ header {
     grid-area: header;
 }
 
+li {
+    list-style: none;
+}
+
 .title {
     padding: 20px;
     border-bottom: 1px solid black;

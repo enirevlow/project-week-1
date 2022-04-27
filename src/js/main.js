@@ -2,16 +2,16 @@
 const newListForm = document.querySelector('[data-new-list-form]');
 const newListInput = document.querySelector('[data-new-list-input]');
 const allList = document.querySelector('[data-all-lists]');
-const listsContainer = document.querySelector('.list-container');
-const taskTitle = document.querySelector('.task-title');
+const listsContainer = document.querySelector('[data-list-container]');
+const taskTitle = document.querySelector('[data-task-title]');
 
 
 const newTaskForm = document.querySelector('[data-new-task-form]');
 const newTaskInput = document.querySelector('[data-new-task-input');
 const addTaskButton = document.getElementById('new-task-button');
 const allTask = document.querySelector('[data-all-tasks');
-const taskHeader = document.querySelector('task-header')
-const clearAllButton = document.querySelector('.clear-all-button');
+const taskHeader = document.querySelector('[data-task-header]')
+const clearAllButton = document.querySelector('[data-clear-all-btn]');
 
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
