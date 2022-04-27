@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+
 
 :root {
     --clr-button: rgb(54, 112, 199);
     --clr-light: #f4f4f4;
-    --clr-medium: rgb(128,128,128);
+    --clr-medium: #c6c6c6;
     --clr-dark: #333;
     --clr-warning: rgb(99, 36, 36);
     --header-height: 80px;
@@ -32,6 +34,13 @@ header {
     padding: .5rem;
     height: var(--header-height);
     width: 100%;
+}
+
+button {
+    border: none;
+    background: var(--clr-light);
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .container {
@@ -133,6 +142,7 @@ header {
     width: 100%;
     height: calc(100vh - var(--header-height));
     top: var(--header-height);
+    overflow-x: hidden;
 }
 
 .task-header {
@@ -153,6 +163,20 @@ header {
     margin-left: auto;
 }
 
+.task-header-right .clear-all-button {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: var(--clr-medium);
+    cursor: pointer;
+    font-size: 1em;
+
+}
+
+.clear-all-button:hover {
+    color: var(--clr-dark);
+}
+
 .tasklist-container, .display-tasks, .all-tasks, .new-task-container {
     display: flex;
     flex-direction: column;
@@ -164,7 +188,7 @@ header {
 .indv-taskcontainer {
     display: flex;
     flex-wrap: nowrap;
-    padding: 1rem;
+    margin: 1rem;
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
@@ -182,11 +206,10 @@ header {
 
 .deletebutton-div {
     display: flex;
-    width: 50px;
     flex-wrap: nowrap;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 1rem;
+    margin-right: 2rem;
     margin-left: auto;
 }
 
@@ -198,7 +221,7 @@ header {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
-    padding: 1rem;
+    padding: .5rem;
     align-items: center;
 }
 
@@ -212,6 +235,7 @@ header {
 .new-task-button {
     display: block;
     width: 50px;
+    margin-left: 1rem;
 }
 
 .new-task-container input {
@@ -220,5 +244,6 @@ header {
     width: 100%;
     border: none;
     border: 1px solid var(--clr-medium);
+    font-size: 1.1em;
 }
 

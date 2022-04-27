@@ -150,7 +150,7 @@ function buildLists() {
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete-list');
         deleteButton.id = 'delete' + list.id;
-        deleteButton.innerText = 'x'
+        deleteButton.innerText = 'x';
         listDiv.appendChild(deleteButton);
         
     });
@@ -199,7 +199,7 @@ function buildTasks(selectedList) {
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete-task');
         deleteButton.id = 'delete' + task.id;
-        deleteButton.innerText = 'x'
+        deleteButton.innerText = 'x';
         deleteButtonDiv.appendChild(deleteButton);
     })
 }
