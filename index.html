@@ -28,14 +28,29 @@
         </aside>
         <div class="task-container">
             <div class="task-header" data-task-header>
-                <h2 class="task-title" data-task-title>Tasks</h2>
-                <button class="clear-all-button" data-clear-all-btn>Clear All</button>
+                <div class="task-header-left">
+                    <h2 class="task-title" data-task-title>Tasks</h2>
+                </div>
+                <div class="task-header-right">
+                    <button class="clear-all-button" data-clear-all-btn>Clear All</button>
+                </div>
             </div>
-            <ul class="all-tasks" data-all-tasks></ul>
-            <form action="" class="newtask" data-new-task-form>
-                <input type="text" name="" id="new-task-input" placeholder="Add New Task" autocomplete="off" data-new-task-input>
-                <button type="submit" id="new-task-button">Add</button>
-            </form>
+            <div class="tasklist-container">
+                <div class="display-tasks">
+                    <ul class="all-tasks" data-all-tasks></ul>
+                </div>
+                <div class="new-task-container">
+                    <form action="" class="newtask" data-new-task-form>
+                        <div class="new-task-input">
+                            <input type="text" name="" id="new-task-input" placeholder="Add New Task" autocomplete="off" data-new-task-input>
+                        </div>
+                        <div class="new-task-button">
+                            <button type="submit" id="new-task-button">Add</button>
+                        </div>
+ 
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>

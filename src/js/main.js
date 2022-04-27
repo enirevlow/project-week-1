@@ -81,9 +81,8 @@ addTaskButton.addEventListener('click', e => {
 //complete task
 allTask.addEventListener('change', e => {
     if(e.target.name === 'complete-checkbox') {
-        let task = e.target.parentElement;
         let selectedList = lists.find(list => list.id === selectedListId);
-        let selectedTask = selectedList.tasks.find(task => task.id === e.target.parentElement.id);
+        let selectedTask = selectedList.tasks.find(task => task.id === e.target.parentNode.parentNode.id);
         selectedTask.complete = e.target.checked;
         saveAndBuildLists();
         }
@@ -92,7 +91,7 @@ allTask.addEventListener('change', e => {
 //delete task
 allTask.addEventListener('click', e => {
     if(e.target.tagName.toLowerCase() === 'button') {
-        let taskId = e.target.parentElement.id;
+        let taskId = e.target.parentNode.parentNode.id;
         let selectedList = lists.find(list => list.id === selectedListId); 
         selectedList.tasks = selectedList.tasks.filter(task=> task.id !== taskId);
         saveAndBuildLists();
@@ -164,22 +163,39 @@ function createTask(name) {
 
 function buildTasks(selectedList) {
     selectedList.tasks.forEach(task => {
+        //create individual task container
         const taskDiv = document.createElement('div');
         taskDiv.id = task.id;
+        taskDiv.classList.add('indv-taskcontainer');
         allTask.appendChild(taskDiv);
+        //create checkbox container
+        const checkboxDiv = document.createElement('div');
+        checkboxDiv.classList.add('checkbox-div');
+        taskDiv.appendChild(checkboxDiv);
+        //create checkbox
         const completeCheckBox = document.createElement('input');
         completeCheckBox.setAttribute('type', 'checkbox');
         completeCheckBox.checked = task.complete;
         completeCheckBox.name = 'complete-checkbox';
-        taskDiv.appendChild(completeCheckBox);
+        checkboxDiv.appendChild(completeCheckBox);
+        //create taskcontent container
+        const taskContentDiv = document.createElement('div');
+        taskContentDiv.classList.add('taskcontent-div');
+        taskDiv.appendChild(taskContentDiv);
+        //create taskcontent
         const taskContent = document.createElement('li');
         taskContent.innerText = task.name;
-        taskDiv.appendChild(taskContent);
+        taskContentDiv.appendChild(taskContent);
+        //create deletebutton container
+        const deleteButtonDiv = document.createElement('div');
+        deleteButtonDiv.classList.add('deletebutton-div');
+        taskDiv.appendChild(deleteButtonDiv);
+        //create deletebutton
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete-task');
         deleteButton.id = 'delete' + task.id;
         deleteButton.innerText = 'x'
-        taskDiv.appendChild(deleteButton);
+        deleteButtonDiv.appendChild(deleteButton);
     })
 }
 
