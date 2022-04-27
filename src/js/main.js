@@ -55,7 +55,7 @@ allList.addEventListener('click', e => {
         selectedListId = lists[0].id;
         } else {
             selectedListId = null;
-            taskTitle.innerText = 'Tasks';
+            taskTitle.innerText = 'TASKS';
             clearElements(allTask);
         }
         saveAndBuildLists();
@@ -130,7 +130,7 @@ function buildAll() {
     clearElements(allList);
     buildLists();
     const selectedList = lists.find(list => list.id === selectedListId); 
-    taskTitle.innerText = selectedList.name;
+    taskTitle.innerText = selectedList.name.toUpperCase() ;
     clearElements(allTask);
     buildTasks(selectedList);
 
