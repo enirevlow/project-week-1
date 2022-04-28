@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-        <!-- New Task Model Section -->
+        <!-- New Task Modal Section -->
         <div class="bg-modal" data-bg-modal>
             <div class="modal-box">
                 <div class="modal-header">
@@ -50,10 +50,13 @@
                     <button class="close-modal-box-button" data-close-modal-box>&times;</button>
                 </div>
                 <form action="" data-new-task-form>
-                    <label for="new-task-input">
-                        <input type="text" placeholder="Add New Task" id="new-task-input" autocomplete="off" data-new-task-input/>
+                    <label for="new-task-input" class="new-task-label">
+                        <span>Task</span><input type="text" placeholder="Add New Task" id="new-task-input" autocomplete="off" data-new-task-input/>
                     </label>
-                    <input type="date" name="" id="due-date" data-new-task-date-input>
+                    <label for="due-date" class="due-date-label">
+                        <span>Due Date</span><input type="date" name="" id="due-date" data-new-task-date-input>
+                    </label>
+                    
 
                     <button class ="modal-new-task-button" data-add-task-btn-modal>Create</button>
                 </form>

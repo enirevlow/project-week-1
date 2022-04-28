@@ -217,6 +217,7 @@ button {
     justify-content: space-between;
     width: 100%;
     height: 100%;
+    margin: 1rem 0.5rem;
 }
 
 .taskleft-div {
@@ -293,12 +294,28 @@ button {
     max-width: 50%;
 }
 
+.new-task-label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1rem;
+}
 .modal-box input {
-    width: 80%;
-    display: block;
+    width: 70%;
     margin: 10px auto;
 }
 
+.due-date-label {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1rem;
+
+}
+
+.due-date-label input {
+    margin: 0 1rem;
+}
 .modal-header {
     padding: 10px 15px;
     display: flex;
