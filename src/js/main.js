@@ -4,6 +4,7 @@ const newListInput = document.querySelector('[data-new-list-input]');
 const allList = document.querySelector('[data-all-lists]');
 const listsContainer = document.querySelector('[data-list-container]');
 const taskTitle = document.querySelector('[data-task-title]');
+const deleteList = document.querySelector('[data-delete-list]');
 
 
 const newTaskForm = document.querySelector('[data-new-task-form]');
@@ -13,6 +14,12 @@ const allTask = document.querySelector('[data-all-tasks');
 const taskHeader = document.querySelector('[data-task-header]')
 const clearAllButton = document.querySelector('[data-clear-all-btn]');
 
+
+
+const bgModal = document.querySelector('[data-bg-modal]');
+const addTaskModal = document.querySelector('[data-add-task-btn-modal]');
+const closeModal = document.querySelector('[data-close-modal-box]');
+const addTaskHeader = document.querySelector('[data-add-task-btn-header]');
 
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListID';
@@ -48,8 +55,8 @@ newListForm.addEventListener('submit', e => {
 
 //delete list
 allList.addEventListener('click', e => {
-    if(e.target.tagName.toLowerCase() === 'button'){
-        let toDeleteId = e.target.parentElement.dataset.listId;
+    if(e.target.tagName.toLowerCase() === 'i'){
+        let toDeleteId = e.target.parentNode.parentNode.dataset.listId;
         lists = lists.filter(list => list.id !== toDeleteId);
         if (lists.length >= 1) {
         selectedListId = lists[0].id;
@@ -63,7 +70,7 @@ allList.addEventListener('click', e => {
 })
 
 //add new task
-addTaskButton.addEventListener('click', e => {
+addTaskModal.addEventListener('click', e => {
     e.preventDefault();
     if (newTaskInput.value === '' || newTaskInput.value === null) {
         newTaskForm.reset();
@@ -75,6 +82,7 @@ addTaskButton.addEventListener('click', e => {
         saveAndBuildLists();
         newTaskForm.reset();
     }
+    closeNewTaskModal();
 
 })
 
@@ -90,8 +98,8 @@ allTask.addEventListener('change', e => {
 
 //delete task
 allTask.addEventListener('click', e => {
-    if(e.target.tagName.toLowerCase() === 'button') {
-        let taskId = e.target.parentNode.parentNode.id;
+    if(e.target.tagName.toLowerCase() === 'i') {
+        let taskId = e.target.parentNode.parentNode.parentNode.id;
         let selectedList = lists.find(list => list.id === selectedListId); 
         selectedList.tasks = selectedList.tasks.filter(task=> task.id !== taskId);
         saveAndBuildLists();
@@ -104,6 +112,14 @@ clearAllButton.addEventListener('click', e => {
     selectedList.tasks.splice(0,selectedList.tasks.length);
     saveAndBuildLists();
 })
+
+
+//open new task modal
+addTaskHeader.addEventListener('click', openNewTaskModal);
+
+
+// //close new task modal
+closeModal.addEventListener('click',closeNewTaskModal);
 
 //Functions
 
@@ -150,7 +166,7 @@ function buildLists() {
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete-list');
         deleteButton.id = 'delete' + list.id;
-        deleteButton.innerText = 'x';
+        deleteButton.innerHTML = '<i class="bi bi-trash3"></i>';
         listDiv.appendChild(deleteButton);
         
     });
@@ -190,7 +206,7 @@ function buildTasks(selectedList) {
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete-task');
         deleteButton.id = 'delete' + task.id;
-        deleteButton.innerText = 'x';
+        deleteButton.innerHTML = '<i class="bi bi-trash3"></i>';
         taskRightDiv.appendChild(deleteButton);
     })
 }
@@ -199,6 +215,17 @@ function clearElements(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
+}
+
+// close modal 
+function closeNewTaskModal() {
+    bgModal.style.display = 'none';
+    newTaskForm.reset();
+}
+
+// open modal
+function openNewTaskModal() {
+    bgModal.style.display = 'flex';
 }
 
 buildLists();

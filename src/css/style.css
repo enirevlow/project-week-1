@@ -38,8 +38,8 @@ header {
 
 button {
     border: none;
-    background: var(--clr-light);
-    border-radius: 50%;
+    outline: none;
+    background: none;
     cursor: pointer;
 }
 
@@ -127,10 +127,17 @@ button {
     overflow: hidden;
 }
 
-.list .delete-list {
-    width: 20px;
-    height: 20px;
+.delete-list, .delete-task {
+    background: none;
+    cursor: pointer;
 }
+
+.delete-list:hover, .delete-task:hover {
+    background: none;
+    cursor: pointer;
+    color: var(--clr-warning);
+}
+
 
 .list-menu, .bottom-list {
     width: 100%;
@@ -148,11 +155,14 @@ button {
 .task-header {
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
 }
 
 .task-header-left {
     display: block;
     padding-left: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .task-header-right {
     display: flex;
@@ -163,6 +173,12 @@ button {
     margin-left: auto;
 }
 
+.task-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-height: 10%;
+}
+
 .task-header-right .clear-all-button {
     background: none;
     border: none;
@@ -171,6 +187,14 @@ button {
     cursor: pointer;
     font-size: 1em;
 
+}
+
+.task-header-right .addtask-button, .modal-new-task-button {
+    background: var(--clr-button);
+    color:white;
+    padding: 5px 10px;
+    border-radius: 5%;
+    margin: 1rem;
 }
 
 .clear-all-button:hover {
@@ -193,7 +217,6 @@ button {
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
-    margin: 1rem 0;
 }
 
 .taskleft-div {
@@ -209,9 +232,7 @@ button {
 }
 
 .taskleft-div input[type="checkbox"] {
-   margin: 0;
-   width: 15px;
-   height: 15px;
+   margin: 1rem 0;
 }
 
 .taskleft-div input[type="checkbox"]:checked + li {
@@ -233,34 +254,53 @@ button {
 }
 
 
-
-.newtask {
-    display: flex;
-    flex-wrap: nowrap;
+/* Modal Section */
+.bg-modal {
     width: 100%;
-    padding: .5rem;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0; 
+    display: none;
+    justify-content: center;
     align-items: center;
 }
 
-.new-task-input{
-    order: 2;
-    display: flex;
-    width: 100%;
-    margin-right: 1rem;
-}
-
-.new-task-button {
-    display: block;
-    width: 50px;
-    margin-left: 1rem;
-}
-
-.new-task-container input {
+.modal-box {
+    width: 500px;
+    height: 300px;
+    background-color: white;
+    border-radius: 4px;
     text-align: center;
-    line-height: 2;
-    width: 100%;
-    border: none;
-    border: 1px solid var(--clr-medium);
-    font-size: 1.1em;
+    position: relative;
+    max-width: 50%;
 }
 
+.modal-box input {
+    width: 80%;
+    display: block;
+    margin: 10px auto;
+}
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--clr-medium);
+}
+
+.modal-header .modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header .close-modal-box-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+
+}
