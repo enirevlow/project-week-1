@@ -11,10 +11,10 @@ const newTaskForm = document.querySelector('[data-new-task-form]');
 const newTaskInput = document.querySelector('[data-new-task-input');
 const addTaskButton = document.getElementById('new-task-button');
 const allTask = document.querySelector('[data-all-tasks');
-const taskHeader = document.querySelector('[data-task-header]')
+const taskHeader = document.querySelector('[data-task-header]');
 const clearAllButton = document.querySelector('[data-clear-all-btn]');
-
-
+const newTaskDateInput = document.querySelector('[data-new-task-date-input]');
+const taskTemplate = document.getElementById('task-template');
 
 const bgModal = document.querySelector('[data-bg-modal]');
 const addTaskModal = document.querySelector('[data-add-task-btn-modal]');
@@ -76,25 +76,26 @@ addTaskModal.addEventListener('click', e => {
         newTaskForm.reset();
     } else {
         let taskName = newTaskInput.value;
-        let newTask = createTask(taskName);
+        let dueDate = newTaskDateInput.value;
+        let newTask = createTask(taskName, dueDate);
         let selectedList = lists.find(list => list.id === selectedListId);
         selectedList.tasks.push(newTask);
         saveAndBuildLists();
         newTaskForm.reset();
+        closeNewTaskModal();
     }
-    closeNewTaskModal();
-
 })
 
 //complete task
 allTask.addEventListener('change', e => {
     if(e.target.name === 'complete-checkbox') {
         let selectedList = lists.find(list => list.id === selectedListId);
-        let selectedTask = selectedList.tasks.find(task => task.id === e.target.parentNode.parentNode.id);
+        let selectedTask = selectedList.tasks.find(task => task.id === e.target.parentNode.parentNode.parentNode.id);
         selectedTask.complete = e.target.checked;
         saveAndBuildLists();
         }
 })
+   
 
 //delete task
 allTask.addEventListener('click', e => {
@@ -173,41 +174,26 @@ function buildLists() {
 
 }
 
-function createTask(name) {
-    return {id: Date.now().toString(), name: name, complete: false};
+function createTask(name, dueDate) {
+    return {id: Date.now().toString(), name: name, dueDate: dueDate, complete: false};
 }
 
 function buildTasks(selectedList) {
     selectedList.tasks.forEach(task => {
-        //create individual task container
-        const taskDiv = document.createElement('div');
-        taskDiv.id = task.id;
-        taskDiv.classList.add('indv-taskcontainer');
-        allTask.appendChild(taskDiv);
-        //create task-left container
-        const taskLeftDiv = document.createElement('div');
-        taskLeftDiv.classList.add('taskleft-div');
-        taskDiv.appendChild(taskLeftDiv);
-        //create checkbox
-        const completeCheckBox = document.createElement('input');
-        completeCheckBox.setAttribute('type', 'checkbox');
-        completeCheckBox.checked = task.complete;
-        completeCheckBox.name = 'complete-checkbox';
-        taskLeftDiv.appendChild(completeCheckBox);
-        //create taskcontent
-        const taskContent = document.createElement('li');
+        const taskElement = document.importNode(taskTemplate.content, true);
+        const taskContainer = taskElement.querySelector('.indv-taskcontainer');
+        taskContainer.id = task.id;
+        const checkbox = taskElement.querySelector('input[name="complete-checkbox"]');
+        checkbox.id = 'complete' + task.id;
+        checkbox.checked = task.complete;
+        const label = taskElement.querySelector('label');
+        label.htmlFor = 'complete' + task.id;
+        const taskContent = taskElement.querySelector('li');
         taskContent.innerText = task.name;
-        taskLeftDiv.appendChild(taskContent);
-        //create task-right container
-        const taskRightDiv = document.createElement('div');
-        taskRightDiv.classList.add('taskright-div');
-        taskDiv.appendChild(taskRightDiv);
-        //create deletebutton
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('delete-task');
-        deleteButton.id = 'delete' + task.id;
-        deleteButton.innerHTML = '<i class="bi bi-trash3"></i>';
-        taskRightDiv.appendChild(deleteButton);
+        const datePicker = taskElement.querySelector('input[name="due-date"]');
+        datePicker.value = task.dueDate;
+        datePicker.addEventListener('change', modifyDate);
+        allTask.append(taskElement);
     })
 }
 
@@ -227,5 +213,16 @@ function closeNewTaskModal() {
 function openNewTaskModal() {
     bgModal.style.display = 'flex';
 }
+
+//modifydate
+function modifyDate(e) {
+    let dueDatePicker = e.target;
+    let taskId = dueDatePicker.parentNode.parentNode.id;
+    let selectedList = lists.find(list => list.id === selectedListId); 
+    let selectedTask = selectedList.tasks.find(task => task.id === taskId); 
+    selectedTask.dueDate = e.target.value;
+    saveAndBuildLists();
+}
+
 
 buildLists();

@@ -50,11 +50,30 @@
                     <button class="close-modal-box-button" data-close-modal-box>&times;</button>
                 </div>
                 <form action="" data-new-task-form>
-                    <input type="text" placeholder="Add New Task" id="new-task-input" autocomplete="off" data-new-task-input/>
+                    <label for="new-task-input">
+                        <input type="text" placeholder="Add New Task" id="new-task-input" autocomplete="off" data-new-task-input/>
+                    </label>
+                    <input type="date" name="" id="due-date" data-new-task-date-input>
+
                     <button class ="modal-new-task-button" data-add-task-btn-modal>Create</button>
                 </form>
             </div>
         </div>
+        <!-- Task Template -->
+        <template id="task-template">
+            <div class="indv-taskcontainer">
+                <div class="taskleft-div">
+                    <label>
+                        <input type="checkbox" name="complete-checkbox">
+                        <li></li>
+                    </label>
+                </div>
+                <div class="taskright-div" data-task-right-div>
+                    <input type="date" class="due-date" name="due-date">
+                    <button class="delete-task" data-delete-task-button><i class="bi bi-trash3"></i></button>
+                </div>
+            </div>
+        </template>
 
     </div>
 </body>
