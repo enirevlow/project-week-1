@@ -51,7 +51,7 @@ button {
 .list-container {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 220px;
     flex-shrink: 0;
     border-right: 1px solid var(--clr-medium);
     height: calc(100vh - var(--header-height));
@@ -163,6 +163,8 @@ button {
     padding-left: 1rem;
     text-overflow: ellipsis;
     overflow: hidden;
+    min-width: 50px;
+    min-height: 30px;
 }
 .task-header-right {
     display: flex;
@@ -241,6 +243,7 @@ button {
     margin: 0 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    min-width: 25%;
 }
 
 .taskleft-div input[type="checkbox"] {

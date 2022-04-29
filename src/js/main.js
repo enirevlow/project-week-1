@@ -197,6 +197,7 @@ function buildTasks(selectedList) {
     })
 }
 
+// clear all child nodes
 function clearElements(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
